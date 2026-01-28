@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TVL PATHWAY</title>
+
+<style>
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        margin: 0;
+        padding-top: 120px;
+        background-image: url('TVL-BLDNG-BG.png');
+        background-size: cover; 
+        background-position: center; 
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header {
+        width: 100%;
+        padding: 20px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0);
+    }
+
+    .header-container {
+        width: 100%;
+        max-width: 1500px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 10px;
+        padding-right: 20px;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .logo img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .logo-text {
+        color: white;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+
+    .header.scrolled {
+        background: rgba(82, 2, 2, 0.95);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .nav-box {
+        display: flex;
+        gap: 20px;
+        padding: 12px 25px;
+        border-radius: 50px;
+        backdrop-filter: blur(15px);
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+    }
+
+    .nav-box a {
+        text-decoration: none;
+        color: white;
+        font-weight: 500;
+        font-size: 14px;
+        padding: 8px 15px;
+        border-radius: 20px;
+        transition: 0.3s;
+    }
+
+    .nav-box a:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-box a.active {
+        background: rgba(255, 255, 255, 0.35);
+        font-weight: 700;
+        color: #fff;
+    }
+
+    @media (max-width: 850px) {
+        .nav-box {
+            gap: 10px;
+            padding: 10px 15px;
+        }
+        .nav-box a {
+            font-size: 12px;
+            padding: 6px 10px;
+        }
+        .logo img {
+            width: 45px;
+            height: 45px;
+        }
+        .logo-text {
+            font-size: 17px;
+        }
+    }
+
+    footer {
+        text-align: center;
+        padding: 20px;
+        background-color: rgb(82, 2, 2);
+        color: white;
+        margin-top: auto;
+    }
+
+    .section {
+        width: 90%;
+        max-width: 1400px;
+        margin: 60px auto;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 40px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 15px #0005;
+    }
+
+    .title-center {
+        text-align: center;
+        font-size: 35px;
+        color: white;
+        font-weight: 700;
+        margin-bottom: 30px;
+        text-shadow: 0 0 10px #000;
+    }
+
+    .jdvp-slide {
+    width: 100%;
+    height: 450px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    }
+
+    .jdvp-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 1s ease;
+    }
+
+    .jdvp-slide img.active {
+        opacity: 1;
+    }
+
+    .row {
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .col-text, .col-slide {
+        flex: 1 1 45%;
+        color: white;
+    }
+
+    .col-text h2 {
+        font-size: 30px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        text-shadow: 0 0 10px #000;
+    }
+
+    .col-text p {
+        font-size: 17px;
+        line-height: 1.6;
+        text-shadow: 0 0 5px #000;
+        text-align: justify;
+    }
+
+    .slideshow {
+        width: 100%;
+        height: 320px;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 0 15px #0008;
+    }
+
+    .slideshow img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .link-box {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 12px 20px;
+        background: rgb(146, 35, 29);
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        border-radius: 10px;
+        text-decoration: none;
+        box-shadow: 0 0 12px #000;
+    }
+
+    .grid-4 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .grid-item {
+        background: rgba(255,255,255,0.15);
+        padding: 15px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 0 10px #0008;
+    }
+
+    .grid-item img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .grid-item h3 {
+        color: white;
+        margin-top: 10px;
+        text-shadow: 0 0 10px #000;
+    }
+
+    .wi-slide {
+    width: 100%;
+    height: 180px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    }
+
+    .wi-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 1s ease;
+    }
+
+    .wi-slide img.active {
+        opacity: 1;
+    }
+
+
+    .center-slide {
+        margin: 0 auto;
+        width: 100%;
+        height: 700px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 0 15px #0008;
+    }
+
+    .collage {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .collage img {
+        width: 30%;
+        min-width: 220px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 0 0 12px #0007;
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="header-container">
+
+        <div class="logo">
+            <img src="LogoJHS.png" alt="Logo">
+            <img src="LogoSHS.png" alt="Logo">
+            <span class="logo-text">PROGRAM / ACTIVITY</span>
+        </div>
+
+        <nav class="nav-box">
+            <a href="Home.html">Home</a>
+            <a href="About.html">About</a>
+            <a href="EntryReq.html">Entry Requirements</a>
+            <a href="NCPass.html">NCII Passer</a>
+            <a href="ProgAct.html">Program/Activities</a>
+        </nav>
+
+    </div>
+</div>
+
+<div class="section">  
+        <div class="jdvp-left">
+            <div class="jdvp-slide">
+                <img src="jdvp1.jpg">
+                <img src="jdvp2.jpg">
+                <img src="jdvp3.jpg">
+                <img src="jdvp4.jpg">
+                <img src="jdvp5.jpg">
+                <img src="jdvp6.jpg">
+                <img src="jdvp7.jpg">
+                <img src="jdvp8.jpg">
+                <img src="jdvp9.jpg">
+                <img src="jdvp10.jpg">
+            </div>
+        </div>
+
+    <div class="row">
+        <div class="col-text">
+            <h2>JDVP Program</h2>
+            <p>
+                JDVP (Joint Delivery Voucher Program) is a program/initiative by the Philippine Department of Education 
+                (DepEd) that provides government funded tuition or assistance vouchers for public Senior High School 
+                (SHS) Technical-Vocational-Livelihood (TVL) Students track. This allows selected TVL students to partake 
+                specialized training at partner private TVI's (Teachnical-Vocational-Institute) such as DATACOM (CSS), 
+                International Electronics Technical Institute (EIM), and [institute ng cookery, di ko alam e sorry] 
+                (Cookery). This program offers better learning facilities, equipments and a more comprehensive training 
+                ground for TVL students to prepare them for their upcoming TESDA National National Assessment. 
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="row">
+
+        <div class="col-text">
+            <h2>Free TESDA NC II Assessment</h2>
+            <p>
+                The free TESDA NC II assessment allows TVL students to earn a National Certificate (NC II) at no cost, 
+                with all fees fully covered by the national government through a joint effort by TESDA and DepEd. This 
+                program validates students’ skills in their chosen strand through practical and theoretical tests, 
+                reduces financial barriers, and enhances employability by officially recognizing the competencies gained 
+                during Senior High School.
+            </p>
+
+            <a class="link-box" href="https://tesda.gov.ph/Downloadables/SAGs/FULL.SAG.pdf">SAG FORM (CSS)</a>
+            <a class="link-box" href="https://www.tesda.gov.ph/Downloadables/SAGs/SAG%20-%20Electrical%20Installation%20and%20Maintenance%20NC%20II.pdf">SAG FORM (EIM)</a>
+            <a class="link-box" href="https://www.tesda.gov.ph/Downloadables/SAGs/SAG%20-%20Cookery%20NC%20II.pdf">SAG FORM (COOKERY)</a>
+            <a class="link-box" href="https://www.tesda.gov.ph/Downloadables/SAGs/SAG%20-%20Bread%20and%20Pastry%20Production%20NC%20II%20-%20Amended.pdf">SAG FORM (BPP)</a>
+            <a class="link-box" href="https://www.tesda.gov.ph/Downloadables/SAGs/SAG%20-%20Food%20and%20Beverage%20Services%20NC%20II.pdf">SAG FORM (FBS)</a>
+        </div>
+
+        <div class="col-slide"> 
+            <div class="slideshow">
+                <img src="tesda.png">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="section">
+    <h1 class="title-center">WORK IMMERSION</h1>
+
+    <div class="grid-4">
+
+        <div class="grid-item">
+            <div class="wi-slide">
+                <img src="wi_in1.jpg">
+                <img src="wi_out1.jpg">
+                <img src="wi_in2.jpg">
+                <img src="wi_out2.jpg">
+                <img src="wi_in3.jpg">
+                <img src="wi_out3.jpg">
+                <img src="wi_out4.jpg">
+                <img src="wi_in5.jpg">
+                <img src="wi_in6.jpg">
+                <img src="wi_in7.jpg">
+                <img src="wi_in8.jpg">
+                <img src="wi_in9.jpg">
+                <img src="wi_in10.jpg">
+            </div>
+            <h3>Industry & School Based</h3>
+        </div>
+
+
+        <div class="grid-item">
+            <img src="m3p2.jpg">
+            <h3>M3P Kitchen</h3>
+        </div>
+
+        <div class="grid-item">
+            <img src="m3p1.jpg">
+            <h3>M3P Bakery</h3>
+        </div>
+
+        <div class="grid-item">
+            <img src="elcab.jpg">
+            <h3>El Caballero</h3>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h1 class="title-center">THANKS GIVING</h1> 
+
+    <div class="center-slide">
+        <img src="thanksgiving.png">
+    </div>
+</div>
+
+<div class="section">
+    <h1 class="title-center">KABTECH FAIR</h1>
+
+    <div class="collage">
+        <img src="kt1.jpg">
+        <img src="kt2.jpg">
+        <img src="kt3.jpg">
+        <img src="kt4.jpg">
+        <img src="kt5.jpg">
+        <img src="kt6.jpg">
+        <img src="kt7.jpg">
+        <img src="kt8.jpg">
+        <img src="kt9.jpg">
+        <img src="kt10.jpg">
+        <img src="kt11.jpg">
+        <img src="kt12.jpg">
+        <img src="kt13.jpg">
+        <img src="kt14.jpg">
+        <img src="kt15.jpg">
+        <img src="kt16.jpg">
+        <img src="kt17.jpg">
+        <img src="kt18.jpg">
+    </div>
+</div>
+
+
+<footer>
+    <p>&copy; 2025 TVL Pathway. All rights reserved.<br>
+        Research Project by: CSS12-A. Gilimio,A., Alindogan,Z.J, Fernandez J. </p>
+</footer>
+
+<script>
+    const currentPage = window.location.pathname.split("/").pop();
+    const menuLinks = document.querySelectorAll(".nav-box a");
+
+    menuLinks.forEach(link => {
+        if (link.getAttribute("href") === currentPage) {
+            link.classList.add("active");
+        }
+    });
+
+    window.addEventListener("scroll", function () {
+        const header = document.querySelector(".header");
+        if (window.scrollY > 50) {
+            header.classList.add("scrolled");
+        } else {
+            header.classList.remove("scrolled");
+        }
+    });
+
+        let wiIndex = 0;
+        const wiSlides = document.querySelectorAll(".wi-slide img");
+
+        function showWiSlides() {
+            wiSlides.forEach(img => img.classList.remove("active"));
+            wiIndex++;
+            if (wiIndex > wiSlides.length) wiIndex = 1;
+            wiSlides[wiIndex - 1].classList.add("active");
+            setTimeout(showWiSlides, 2000);
+        }
+
+        if (wiSlides.length > 0) {
+            wiSlides[0].classList.add("active");
+            showWiSlides();
+        }
+
+        let jdvpIndex = 0;
+        const jdvpSlides = document.querySelectorAll(".jdvp-slide img");
+
+        function showJdvpSlides() {
+            jdvpSlides.forEach(img => img.classList.remove("active"));
+            jdvpIndex++;
+            if (jdvpIndex > jdvpSlides.length) jdvpIndex = 1;
+            jdvpSlides[jdvpIndex - 1].classList.add("active");
+            setTimeout(showJdvpSlides, 3000);
+        }
+
+        if (jdvpSlides.length > 0) {
+            jdvpSlides[0].classList.add("active");
+            showJdvpSlides();
+        }
+
+
+</script>
+
+</body>
+</html>

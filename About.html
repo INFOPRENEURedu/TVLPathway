@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TVL PATHWAY</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: white;
+        }
+
+        .header {
+            width: 100%;
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            background: transparent;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(82, 2, 2, 0.95);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .header-container {
+            width: 100%;
+            max-width: 1500px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-left: 10px;
+            padding-right: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .logo img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .logo-text {
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .nav-box {
+            display: flex;
+            gap: 20px;
+            padding: 12px 25px;
+            border-radius: 50px;
+            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+            transition: background 0.3s ease;
+        }
+
+        .header.scrolled .nav-box {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .nav-box a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            font-size: 14px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .nav-box a:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .nav-box a.active {
+            background: rgba(255, 255, 255, 0.35);
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .cover {
+            height: 100vh;
+            background-image: url('TVL-BLDNG-BG.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding-left: 7%;
+            padding-right: 7%;
+        }
+
+        .cover-text {
+            max-width: 600px;
+            margin-top: 80px;
+        }
+
+        .cover-text h1 {
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-shadow: 0 5px 20px rgba(0,0,0,0.6);
+        }
+
+        .cover-text p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 1px 0;
+            text-shadow: 0 3px 10px rgba(0,0,0,0.7);
+        }
+
+        .info-section {
+            background: white;
+            padding: 80px 10%;
+        }
+
+        .info-section h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .info-section p {
+            font-size: 18px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .OrgChart-container {
+            margin: 20px auto 80px;
+            padding: 15px;
+            max-width: 800px;
+            border-radius: 12px;
+            overflow-x: auto;
+            text-align: center;
+        }
+
+        .OrgChart-text {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .OrgChart {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .OrgChart img {
+            width: 80%;
+            max-width: 550px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            }
+
+        .contact-box {
+            background-color: rgba(82, 2, 2, 0.95);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.877);
+            width: 48%;
+            text-align: center;
+            }
+
+        .contact-box h2 {
+        font-size: 24px;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        }
+
+        .contact-box p {
+            font-size: 16px;
+            color: #ffffff;
+            margin-top: 10px;
+        }
+
+        .contact-box .Landline {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .contact-box .Facebook {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .contact-container-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background-color: rgb(82, 2, 2);
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+
+        .contact-box .contact-btn {
+            margin-top: 20px;
+            background-color: rgb(255, 255, 255);
+            color: rgb(95, 10, 10);
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-box .contact-btn:hover {
+            background-color: rgb(66, 8, 8);
+        }
+
+        .contact-box:hover {
+            transform: translateY(-10px);
+            background: rgb(129, 19, 19);
+        }
+
+        .contact-box {
+            transition: .3s;
+        }
+
+        @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(30px); }
+                to { opacity: 1; transform: translateY(0); }
+            }   
+
+        @media (max-width: 850px) {
+            .cover-text h1 {
+                font-size: 32px;
+            }
+            .cover-text p {
+                font-size: 16px;
+            }
+            .OrgChart-text {
+                font-size: 28px;
+            }
+        }
+
+    footer {
+        text-align: center;
+        padding: 20px;
+        background-color: rgb(82, 2, 2);
+        color: white;
+        margin-top: 50px;
+    }
+            
+
+</style>
+    
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="header-container">
+
+            <div class="logo">
+                <img src="LogoJHS.png" alt="Logo">
+                <img src="LogoSHS.png" alt="Logo">
+                <span class="logo-text">ABOUT</span>
+            </div>
+
+            <nav class="nav-box">
+                <a href="Home.html">Home</a>
+                <a href="About.html">About</a>
+                <a href="EntryReq.html">Entry Requirements</a>
+                <a href="NCPass.html">NCII Passer</a>
+                <a href="ProgAct.html">Program/Activities</a>
+            </nav>
+
+        </div>
+    </div>
+
+    <div class="cover">
+        <div class="cover-text">
+            <h1>Cavite National High School – Senior High School</h1>
+
+            <br><br>
+
+            <p><b>Name:</b> Cavite National High School – Senior High School Filipino</p>
+            <p><b>Name:</b> Pambansang Mataas na Paaralan ng Cavite – Senior High School</p>
+            <p><b>Type:</b> Public Senior High School (Grades 11–12)</p>
+            <p><b>Managed by:</b> Department of Education (DepEd), Philippines</p>
+            <p><b>Division:</b> DepEd Schools Division – Cavite City</p>
+            <p><b>Address:</b> Chief E. Martin Street, Caridad, Cavite City 4100, Philippines</p>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <h2>Technical-Vocational-Livelihood</h2>
+        <p>
+            The <b>Technical-Vocational-Livelihood (TVL) track</b> was formally integrated into the Philippine basic 
+            education system through the <b>Enhanced Basic Education Act of 2013 (Republic Act 10533)</b>, which later 
+            on established the K–12 program on <b>Cavite National Highschool Senior Highschool (CNHS-SHS)</b>. Aimed at 
+            addressing the "jobs-skills mismatch," the TVL track was designed to provide senior high school students 
+            with practical, industry-aligned competencies in sectors such as <b>Home Economics, Industrial Arts, and ICT</b>. 
+            When the Senior High School (SHS) program was fully rolled out in 2016, the TVL track became a vital pathway 
+            for students seeking immediate employment or entrepreneurship through TESDA National Certifications (NC), 
+            while still remaining a viable route to higher education. Over the years, the track has evolved from 
+            being perceived as a secondary option to a respected career choice, though it continues to navigate 
+            challenges like resource limitations and the need for stronger industry partnerships to ensure graduates 
+            are truly "work-ready."
+        </p>
+    </div>
+
+    <div class="OrgChart-container">
+        <div class="OrgChart-text">ORGANIZATIONAL CHART</div>
+        <div class="OrgChart">
+            <img src="OrgC.jpg" alt="Organizational Chart">
+        </div>
+    </div>
+
+    <div class="contact-container">
+
+        <div class="contact-box">
+            <h2>Message Us</h2>
+            <p>Do you have any inquiries or concern? Contact us here.</p>
+            <p class="Facebook">
+                Cavite National Highschool - Senior Highschool
+            </p>
+            <a href="https://www.facebook.com/CNHSSeniorHighSch" class="contact-btn">Facebook Page</a>
+        </div>
+
+        <div class="contact-box">
+            <h2>Contact Us</h2>
+            <p>Do you have any inquiries or concern? Contact us here.</p>
+            <p class="Facebook">
+                (046) 438 7421
+            </p>
+            <br><br>
+            <a href="https://www.facebook.com/CNHSSeniorHighSch" class="contact-btn">Contact Us</a>
+        </div>
+
+        <div class="contact-box">
+            <h2>Message Us</h2>
+            <p>Check out the TVL Club, AVIS Facebook Page </p>
+            <p class="Facebook">
+                AVIS - Alliance of Vocational Innovators Society
+            </p>
+
+            <a href="https://www.facebook.com/profile.php?id=61562946411570" class="contact-btn">Facebook Page</a>
+        </div>
+
+        <div class="contact-box">
+            <h2>Message Us</h2>
+            <p>Check out TVL Work Immersion Facebook Page</p>
+            <p class="Facebook">
+                Kabitenyong Technopreneur TVL CNHS 
+            </p>
+            <a href="https://www.facebook.com/CaviteHighWI" class="contact-btn">Facebook Page</a>
+        </div>
+         
+        <br><br><br><br>
+        </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 TVL Pathway. All rights reserved.<br>
+        Research Project by: CSS12-A. Gilimio,A., Alindogan,Z.J, Fernandez J. </p>
+</footer>
+
+    
+
+    <script>
+        window.addEventListener("scroll", function () {
+            const header = document.querySelector(".header");
+            if (window.scrollY > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        });
+
+        const currentPage = window.location.pathname.split("/").pop();
+            const menuLinks = document.querySelectorAll(".nav-box a");
+
+            menuLinks.forEach(link => {
+            if (link.getAttribute("href") === currentPage) {
+                    link.classList.add("active");
+            }
+        });
+
+    </script>
+
+</body>
+</html>

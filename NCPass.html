@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TVL PATHWAY</title>
+
+<style>
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        margin: 0;
+        padding-top: 120px;
+        background-image: url('TVL-BLDNG-BG.png');
+        background-size: cover; 
+        background-position: center; 
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header {
+        width: 100%;
+        padding: 20px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0);
+    }
+
+    .header-container {
+        width: 100%;
+        max-width: 1500px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 10px;
+        padding-right: 20px;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 5px; 
+    }
+
+    .logo img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .logo-text {
+        color: white;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+
+    .header.scrolled {
+            background: rgba(82, 2, 2, 0.95);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+    .nav-box {
+        display: flex;
+        gap: 20px;
+        padding: 12px 25px;
+        border-radius: 50px;
+        backdrop-filter: blur(15px);
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+    }
+
+    .nav-box a {
+        text-decoration: none;
+        color: white;
+        font-weight: 500;
+        font-size: 14px;
+        padding: 8px 15px;
+        border-radius: 20px;
+        transition: 0.3s;
+    }
+
+    .nav-box a:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-box a.active {
+        background: rgba(255, 255, 255, 0.35);
+        font-weight: 700;
+        color: #fff;
+    }
+
+    @media (max-width: 850px) {
+        .nav-box {
+            gap: 10px;
+            padding: 10px 15px;
+        }
+        .nav-box a {
+            font-size: 12px;
+            padding: 6px 10px;
+        }
+        .logo img {
+            width: 45px;
+            height: 45px;
+        }
+        .logo-text {
+            font-size: 17px;
+        }
+    }
+
+    footer {
+        text-align: center;
+        padding: 20px;
+        background-color: rgb(82, 2, 2);
+        color: white;
+        margin-top: auto;
+    }
+
+    /* ------------------------- SLIDESHOW SECTION ------------------------- */
+
+    .slideshow-section {
+        width: 100%;
+        max-width: 900px;
+        margin: 50px auto;
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .slideshow-box {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.15);
+        padding: 20px;
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .main-slide-img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .thumbnail-container {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .thumbnail-container img {
+        width: 80px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 5px;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: 0.3s;
+    }
+
+    .thumbnail-container img:hover {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="header-container">
+
+        <div class="logo">
+            <img src="LogoJHS.png" alt="Logo">
+            <img src="LogoSHS.png" alt="Logo">
+            <span class="logo-text">FACILITIES</span>
+        </div>
+
+        <nav class="nav-box">
+            <a href="Home.html">Home</a>
+            <a href="About.html">About</a>
+            <a href="EntryReq.html">Entry Requirements</a>
+            <a href="NCPass.html">NCII Passer</a>
+            <a href="ProgAct.html">Program/Activities</a>
+        </nav>
+
+    </div>
+</div>
+
+
+<!-- ----------------------- NEW SLIDESHOWS ADDED HERE ----------------------- -->
+
+<div class="slideshow-section">
+
+    <!-- 5 SLIDESHOWS -->
+    <div class="slideshow-box" id="slideshow1">
+        <img class="main-slide-img" src="nccss1.jpg">
+        <div class="thumbnail-container">
+            <img src="nccss1.jpg">
+            <img src="nccss2.jpg">
+            <img src="nccss3.jpg">
+            <img src="nccss4.jpg">
+            <img src="nccss5.jpg">
+        </div>
+    </div>
+
+    <div class="slideshow-box" id="slideshow2">
+        <img class="main-slide-img" src="nceim1.jpg">
+        <div class="thumbnail-container">
+            <img src="nceim1.jpg">
+            <img src="nceim2.jpg">
+            <img src="nceim3.jpg">
+            <img src="nceim4.jpg">
+            <img src="nceim5.jpg">
+        </div>
+    </div>
+
+    <div class="slideshow-box" id="slideshow3">
+        <img class="main-slide-img" src="nccookery1.jpg">
+        <div class="thumbnail-container">
+            <img src="nccookery1.jpg">
+            <img src="nccookery3.jpg">
+            <img src="nccookery4.jpg">
+        </div>
+    </div>
+
+    <div class="slideshow-box" id="slideshow4">
+        <img class="main-slide-img" src="ncbpp1.jpg">
+        <div class="thumbnail-container">
+            <img src="ncbpp1.jpg">
+            <img src="ncbpp2.jpg">
+            <img src="ncbpp3.jpg">
+        </div>
+    </div>
+
+    <div class="slideshow-box" id="slideshow5">
+        <img class="main-slide-img" src="ncfbs1.jpg">
+        <div class="thumbnail-container">
+            <img src="ncfbs1.jpg">
+            <img src="ncfbs2.jpg">
+            <img src="ncfbs3.jpg">
+            <img src="ncfbs4.jpg">
+            <img src="ncfbs5.jpg">
+        </div>
+    </div>
+
+</div>
+<!-- ----------------------- END OF SLIDESHOWS ----------------------- -->
+
+
+<footer>
+    <p>&copy; 2025 TVL Pathway. All rights reserved.<br>
+        Research Project by: CSS12-A. Gilimio,A., Alindogan,Z.J, Fernandez J. </p>
+</footer>
+
+<script>
+    const currentPage = window.location.pathname.split("/").pop();
+    const menuLinks = document.querySelectorAll(".nav-box a");
+
+    menuLinks.forEach(link => {
+        if (link.getAttribute("href") === currentPage) {
+            link.classList.add("active");
+        }
+    });
+
+    window.addEventListener("scroll", function () {
+        const header = document.querySelector(".header");
+        if (window.scrollY > 50) {
+            header.classList.add("scrolled");
+        } else {
+            header.classList.remove("scrolled");
+        }
+    });
+
+    /* --------------- SLIDESHOW LOGIC --------------- */
+    document.querySelectorAll(".slideshow-box").forEach(box => {
+        const mainImg = box.querySelector(".main-slide-img");
+        const thumbs = box.querySelectorAll(".thumbnail-container img");
+
+        thumbs.forEach(t => {
+            t.addEventListener("click", () => {
+                mainImg.src = t.src;
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

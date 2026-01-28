@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TVL PATHWAY</title>
+
+<style>
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        margin: 0;
+        padding-top: 120px;
+        background-image: url('TVL-BLDNG-BG.png');
+        background-size: cover; 
+        background-position: center; 
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    .header {
+        width: 100%;
+        padding: 20px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0);
+    }
+
+    .header-container {
+        width: 100%;
+        max-width: 1500px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 10px;
+        padding-right: 20px;
+    }
+
+    .logo-box {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .logo-box img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .header-title {
+        color: white;
+        font-size: 22px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin-left: 10px;
+    }
+
+    .header.scrolled {
+            background: rgba(82, 2, 2, 0.95);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+    .nav-box {
+        display: flex;
+        gap: 20px;
+        padding: 12px 25px;
+        border-radius: 50px;
+        backdrop-filter: blur(15px);
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+    }
+
+    .nav-box a {
+        text-decoration: none;
+        color: white;
+        font-weight: 500;
+        font-size: 14px;
+        padding: 8px 15px;
+        border-radius: 20px;
+        transition: 0.3s;
+    }
+
+    .nav-box a:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-box a.active {
+        background: rgba(255, 255, 255, 0.35);
+        font-weight: 700;
+        color: #fff;
+    }
+
+    @media (max-width: 900px) {
+        .nav-box { gap: 10px; padding: 10px 15px; }
+        .nav-box a { font-size: 12px; padding: 6px 10px; }
+        .logo-box img { width: 50px; height: 50px; }
+        .header-title { font-size: 18px; }
+    }
+
+    .slideshow-container {
+        margin: 50px auto;
+        margin-top: 0;
+        position: relative;
+        width: 80%;
+        box-shadow: 0 4px 10px rgb(0, 0, 0);
+        max-width: 800px;
+        height: 450px;
+        overflow: hidden;
+        border-radius: 10px;
+    }
+
+    .slides img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .center-container {
+        width: 100%;
+        text-align: center;   
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        padding: 20px 0;
+    }
+
+    .slideshow-title {
+        font-size: 40px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-align: center;
+        color: white;
+        font-weight: bolder;
+    }
+
+    .slideshow-text {
+        font-size: 18px;
+        line-height: 1.6;
+        max-width: 900px;
+        text-align: center;
+        color: white;
+        text-align: justify;
+    }
+
+    .slideshow-ANS {
+        font-size: 40px;
+        font-weight: bold;
+        margin-bottom: 0%;
+        text-align: center;
+        color: white;
+        font-weight: bolder;
+    }
+
+    .he-section {
+        margin-top: 40px;
+        width: 90%;
+        max-width: 1100px;
+        padding: 40px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    .he-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin-top: 25px;
+    }
+
+    .he-card {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 20px;
+        border-radius: 15px;
+        border: 1px solid rgba(255,255,255,0.2);
+        transition: .3s;
+        color: white;
+    }
+
+    .he-card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+    .he-card h3 {
+        margin-bottom: 10px;
+        color: #ffe4e4;
+    }
+
+    ul {
+        padding-left: 18px;
+        text-align: left;
+    }
+
+    .facilities-pics {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        align-items: center
+    }
+
+    .facilities-pics img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+        text-align: center;
+        padding: 20px;
+        background-color: rgb(82, 2, 2);
+        color: white;
+        margin-top: 50px;
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="header-container">
+
+        <div class="logo-box">
+            <img src="LogoJHS.png" alt="Logo 1">
+            <img src="LogoSHS.png" alt="Logo 2">
+            <span class="header-title">HOME</span>
+        </div>
+
+        <nav class="nav-box">
+            <a href="Home.html">Home</a>
+            <a href="About.html">About</a>
+            <a href="EntryReq.html">Entry Requirements</a>
+            <a href="NCPass.html">NCII Passer</a>
+            <a href="ProgAct.html">Program/Activities</a>
+        </nav>
+
+    </div>
+</div>
+
+    <div class="center-container">
+    <div class="slideshow-ANS">ANNOUNCEMENT</div>
+    </div>
+
+    <div class="slideshow-container">
+        <div class="slides"><img src="TechVoc.png"></div>
+        <div class="slides"><img src="ANS1.png"></div>
+        <div class="slides"><img src="ANS2.png"></div>
+        <div class="slides"><img src="ANS3.png"></div>
+        <div class="slides"><img src="ANS4.png"></div>
+        <div class="slides"><img src="ANS5.png"></div>
+        <div class="slides"><img src="css1.png"></div>
+    </div>
+
+<div class="center-container">
+    <div class="slideshow-title">TVL PATHWAY</div>
+    <br><br><br>
+    <div class="slideshow-text">
+        <b>Technical-Vocational-Livelihood (TVL)</b> is a track in senior high schoolthat focuses on equipping 
+        students with practical, hands-on skills that are useful for employment and livelihood. TVL emphasizes 
+        <b>real-world training that allows students to learn by doing</b>. This track is ideal for learners who want 
+        to be job-ready after high school or who are interested in starting their own small businesses. 
+        TVL helps students develop technical skills, work discipline, and problem-solving abilities that are 
+        important in various industries.
+        <br><br>
+         The TVL track offers different strands, including <b>Home Economics, Information and Communications Technology, 
+        and Industrial Arts</b>. Each strand focuses on specific skill sets, such as <b>cooking, baking, computer programming, 
+        electrical installation, or welding</b>. These strands are designed to match industry needs, ensuring that students 
+        gain relevant and in-demand skills. Training often includes workshops, laboratory activities, and hands-on 
+        projects to strengthen practical knowledge.
+        <br><br>
+        One of the main advantages of the TVL track is the opportunity for students to earn certifications, 
+        such as <b>TESDA National Certificates</b>. These certifications serve as proof of competency and can help 
+        graduates qualify for jobs both locally and internationally. TVL also prepares students for entrepreneurship 
+        by teaching basic business skills, workplace ethics, and safety standards. Overall, the 
+        Technical-Vocational-Livelihood track empowers students with practical abilities, confidence, and opportunities, 
+        allowing them to build a stable career path or continue further education and training in their chosen field.
+    </div>
+
+    <br><br><br>
+
+    <div class="slideshow-title">Top of Form</div>
+
+    <br>
+
+    <div class="slideshow-title">HOME ECONOMICS (HE) STRAND</div>
+
+        <div class="slideshow-text">
+            The <b>Home Economics (HE)</b> strand equips students with practical skillsin cooking, baking, hospitality, and service-related 
+        work. It is perfect for students who enjoy working with food, keeping things organized, and providing good service 
+        to others. Through this strand, learners gain a better understanding of how to prepare food properly, keep work 
+        areas clean, and deliver services that meet professional standards.
+        <br><br>
+        Students get plenty of hands-on experience in areas like cookery, bread and pastry making, food and beverage 
+        service, and housekeeping. They learn how to prepare meals correctly, use kitchen tools safely, follow proper 
+        hygiene, and present food in an attractive and professional way. These skills are very useful in places like 
+        restaurants, hotels, and other service-based businesses, helping students become more confident and ready for 
+        real work.
+        </div>
+        
+    <div class="he-section">
+
+        <div class="he-cards">
+
+            <div class="he-card">
+                <h3>Skills You Will Learn</h3>
+                <ul>
+                    <li>Food preparation & cooking</li>
+                    <li>Baking & pastry making</li>
+                    <li>Food & beverage service</li>
+                    <li>Housekeeping & sanitation</li>
+                    <li>Kitchen hygiene & safety</li>
+                    <li>Customer service & communication</li>
+                    <li>Basic business & catering skills</li>
+                </ul>
+            </div>
+
+            <div class="he-card">
+                <h3>Possible College Courses</h3>
+                <ul>
+                    <li>Hospitality Management</li>
+                    <li>Culinary Arts</li>
+                    <li>Tourism Management</li>
+                    <li>Nursing or Caregiving</li>
+                </ul>
+            </div>
+
+            <div class="he-card">
+                <h3>Career Opportunities</h3>
+                <ul>
+                    <li>Chef or Cook</li>
+                    <li>Baker</li>
+                    <li>Hotel or Restaurant Staff</li>
+                    <li>Caregiver</li>
+                    <li>Entrepreneur (baking, catering, food business)</li>
+                </ul>
+            </div>
+        </div>
+            <div class="facilities-pics">
+                <img src="fac_HE1.jpg">
+                <img src="fac_HE2.jpg">
+            </div>
+    </div>
+
+    <br><br><br>
+
+    <div class="slideshow-title">COMPUTER SYSTEM SERVICING (CSS) STRAND</div>
+        <div class="slideshow-text">
+            The <b>Computer Systems Servicing ( CSS )</b> This strand is perfect for students who are interested in computers, 
+            technology, and IT-related work. This strand teaches students how to install, maintain, repair, and 
+            troubleshoot computer systems and networks, skills that are very important in today’s digital world. 
+            Students get hands-on experience in assembling computer units, installing software, setting up networks, 
+            and solving common hardware and software problems. They also learn how to handle computer equipment safely
+            and provide basic technical support. These skills prepare students to help people and businesses keep their 
+            computer systems running smoothly, making them ready for a variety of technology-related jobs.
+        </div>    
+    
+    <div class="he-section">
+
+        <div class="he-cards">
+
+            <div class="he-card">
+                <h3>Skills You Will Learn</h3>
+                <ul>
+                    <li>Installing and repairing computer hardware</li>
+                    <li>Setting up and maintaining networks</li>
+                    <li>Installing software and operating systems</li>
+                    <li>Troubleshooting computer problems</li>
+                    <li>Basic technical support</li>
+                    <li>Proper handling of computer equipment</li>
+                    <li>Data and file management</li>
+                </ul>
+            </div>
+
+            <div class="he-card">
+                <h3>Possible College Courses</h3>
+                <ul>
+                    <li>Information Technology (IT)</li>
+                    <li>Computer Science</li>
+                    <li>Animation and Multimedia</li>
+                    <li>Software Engineering</li>
+                </ul>
+            </div>
+
+            <div class="he-card">
+                <h3>Career Opportunities</h3>
+                <ul>
+                    <li>Web Developer</li>
+                    <li>Programmer</li>
+                    <li>Graphic Designe</li>
+                    <li>IT Support Specialist</li>
+                    <li>App Developer</li>
+                </ul>
+            </div>
+        </div>
+            <div class="facilities-pics">
+            <img src="fac_CSS1.jpg">
+            <img src="fac_CSS2.jpg">
+        </div>
+    </div>
+
+    <br><br><br>
+
+    <div class="slideshow-title">ELECTRICAL INSTALLATION AND MAINTENANCE (EIM) STRAND</div>
+        <div class="slideshow-text">
+            The <b>Electrical Installation and Maintenance (EIM)</b> strand is perfect for students who are interested in 
+            working with electricity, wiring, and electrical systems. This strand teaches students how to install, 
+            maintain, and repair electrical systems in homes, buildings, and other facilities. Students get hands-on 
+            training in electrical wiring, lighting installation, equipment maintenance, and safety practices. They 
+            also learn how to read electrical plans, use tools correctly, and follow safety standards to prevent 
+            accidents. These skills help ensure that electrical systems work efficiently and safely, preparing students 
+            for careers in various industries where technical electrical knowledge is needed.
+        </div>
+
+    <div class="he-section">
+
+        <div class="he-cards">
+
+            <div class="he-card">
+                <h3>Skills You Will Learn</h3>
+                <ul>
+                    <li>Electrical wiring and installation</li>
+                    <li>Maintenance of electrical systems</li>
+                    <li>Repairing electrical equipment</li>
+                    <li>Reading electrical plans and diagrams</li>
+                    <li>Using electrical tools and testing devices</li>
+                    <li>Following electrical safety standards</li>
+                    <li>Basic troubleshooting</li>
+                </ul>
+            </div>
+
+            <div class="he-card">
+                <h3>Possible College Courses</h3>
+                <ul>
+                    <li>Electrical Engineering</li>
+                    <li>Mechanical Engineering</li>
+                    <li>Industrial Technology</li>
+                    <li>Automotive Technology</li>
+                </ul>
+            </div>
+
+            <div class="he-card">
+                <h3>Career Opportunities</h3>
+                <ul>
+                    <li>Electrician</li>
+                    <li>Welder</li>
+                    <li>Carpenter</li>
+                    <li>Automotive Technician</li>
+                    <li>Machine Operator</li>
+                </ul>
+            </div>
+                </div>
+                <div class="facilities-pics">
+                <img src="fac_EIM.jpg">
+                </div>
+        </div>
+        <br><br><br><br><br><br><br><br>
+    </div>
+       
+</div>
+
+<footer>
+    <p>&copy; 2025 TVL Pathway. All rights reserved. <br>
+        Research Project by: CSS12-A. Gilimio,A., Alindogan,Z.J, Fernandez J.   
+    </p>
+</footer>
+
+<script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("slides");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }    
+            slides[slideIndex-1].style.display = "block";  
+            setTimeout(showSlides, 2000); 
+        }
+
+        window.addEventListener("scroll", function () {
+            const header = document.querySelector(".header");
+            if (window.scrollY > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        });
+
+        const currentPage = window.location.pathname.split("/").pop();
+            const menuLinks = document.querySelectorAll(".nav-box a");
+
+            menuLinks.forEach(link => {
+            if (link.getAttribute("href") === currentPage) {
+                    link.classList.add("active");
+            }
+        });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TVL PATHWAY</title>
+    <style>
+
+        #header {
+        width: 100%;
+        background-color: rgb(82, 2, 2);
+        color: white;
+        text-align: center;
+        padding: 30px 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .logo-box {
+            position: absolute;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .logo-box img {
+            height: 75px;
+            width: auto;
+        }
+
+        .header-title {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .nav-right {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .nav-right ul {
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-right ul li {
+            list-style: none;
+        }
+
+        .nav-right ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .nav-right ul li a:hover {
+            text-decoration: underline;
+        }
+    
+        body {
+
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+
+            background-image: url('TVL-BLDNG-BG.png');
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat;
+        }
+
+        #quiz-container { 
+            background: rgb(255, 255, 255); 
+            padding: 20px; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            width: 100%; max-width: 500px; 
+            text-align: center; 
+        }
+        
+        #progress-container { 
+            background: #8f5b5b; 
+            border-radius: 10px; 
+            height: 10px; 
+            margin-bottom: 20px; 
+            overflow: hidden; 
+        }
+        
+        #progress-bar { 
+            background: #4caf50; 
+            height: 100%; 
+            width: 0%; 
+            transition: width 0.3s ease; 
+        }
+        
+        h3 { 
+            color: #333; 
+            min-height: 60px; 
+            margin-bottom: 30px; 
+        
+        }
+        .options { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
+        }
+
+        button { 
+            padding: 15px; 
+            cursor: pointer; 
+            border: 2px solid #721f1f; 
+            border-radius: 8px; 
+            background: #fff; 
+            font-size: 16px; 
+            font-weight: 500; 
+            transition: all 0.2s; 
+        }
+
+        button:hover { 
+            border-color: #2196f3; 
+            background: #f0f7ff; 
+            transform: translateY(-2px); 
+        }
+
+        .hidden { 
+            display: none; 
+        }
+
+        #result-text { 
+            font-size: 24px; 
+            color: #7e1a1a; 
+            font-weight: bold; 
+            margin: 20px 0; 
+        }
+
+        .stats { 
+            font-size: 14px; 
+            color: #666; 
+            margin-top: 10px; 
+        }
+
+    </style>    
+</head>
+
+<body>
+
+    <div id="header">
+    <div class="header-content">
+
+       
+        <div class="logo-box">
+            <img src="LogoJHS.png" alt="Logo 1">
+            <img src="LogoSHS.png" alt="Logo 2">
+        </div>
+        
+        <span class="header-title">Where do you belong?</span>
+
+        <nav class="nav-right">
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Assessment.html">Assessment</a></li>
+                <li><a href="Links.html">Links</a></li>
+                <li><a href="contacts.html">Contacts</a></li>
+            </ul>
+        </nav>
+
+        </div>
+    </div>
+    
+    <div id="quiz-container">
+    <div id="progress-container">
+    <div id="progress-bar">
+    </div>
+        </div>
+
+    <p 
+        id="q-count" 
+        style="font-size: 12px; 
+        color: #888; 
+        text-transform: uppercase; 
+        letter-spacing: 1px;"> Question 1 of 30
+    </p>
+
+    <div id="question-box">
+        <h3 id="question-text">Loading...</h3>
+        <div class="options">
+            <button onclick="handleAnswer(0)">No</button>
+            <button onclick="handleAnswer(1)">A Little Bit</button>
+            <button onclick="handleAnswer(2)">Yes</button>
+        </div>
+    </div>
+
+    <div id="result-box" class="hidden">
+        <h2>Recommended Strand:</h2>
+        <div id="result-text"></div>
+        <p>Based on your interests in technology, technical skills, and practical arts.</p>
+        <button onclick="location.reload()" 
+                style="margin-top:20px; 
+                background: #610505; 
+                color: white; 
+                border: none;" > Restart Assessment</button>
+    </div>
+</div>
+
+<script>
+    const scores = { "CSS": 0, "EIM": 0, "HE": 0 };
+    
+    const questions = [
+    { text: "Are you interested in learning how to build a computer from scratch?", strand: "CSS" },
+    { text: "Does learning the functions of different computer parts interest you?", strand: "CSS" },
+    { text: "Do you enjoy troubleshooting why a WiFi connection isn't working?", strand: "CSS" },
+    { text: "Are you curious about how computer viruses and antivirus software work?", strand: "CSS" },
+    { text: "Do you like organizing files and folders on a computer for efficiency?", strand: "CSS" },
+    { text: "Would you like to learn how to set up a local area network (LAN)?", strand: "CSS" },
+    { text: "Do you enjoy taking apart electronics to see the circuit boards inside?", strand: "CSS" },
+    { text: "Are you interested in installing different Operating Systems like Linux or Windows?", strand: "CSS" },
+    { text: "Do you find yourself being the person friends ask for tech support?", strand: "CSS" },
+    { text: "Would you like to work in an office or a server room environment?", strand: "CSS" },
+
+    { text: "Do you like working with your hands to fix broken appliances?", strand: "EIM" },
+    { text: "Are you interested in how electricity travels from a plant to a house?", strand: "EIM" },
+    { text: "Do you enjoy using tools like pliers, screwdrivers, and testers?", strand: "EIM" },
+    { text: "Would you like to learn how to read blue prints for building wiring?", strand: "EIM" },
+    { text: "Are you comfortable working with wires and lighting fixtures?", strand: "EIM" },
+    { text: "Do you prefer physical, active work over sitting at a desk all day?", strand: "EIM" },
+    { text: "Are you interested in learning about solar panels and renewable energy?", strand: "EIM" },
+    { text: "Do you pay close attention to safety rules and warning signs?", strand: "EIM" },
+    { text: "Would you like to know how to install a circuit breaker panel?", strand: "EIM" },
+    { text: "Does the idea of becoming a master electrician appeal to you?", strand: "EIM" },
+
+    { text: "Do you enjoy experimenting with different flavors when cooking?", strand: "HE" },
+    { text: "Are you interested in learning professional food plating and presentation?", strand: "HE" },
+    { text: "Do you like the fast-paced environment of a kitchen?", strand: "HE" },
+    { text: "Would you like to learn how to bake breads and pastries from scratch?", strand: "HE" },
+    { text: "Are you interested in nutrition and how to create healthy meal plans?", strand: "HE" },
+    { text: "Do you enjoy hosting people and making sure they are well-fed?", strand: "HE" },
+    { text: "Would you like to learn about food safety and sanitation standards?", strand: "HE" },
+    { text: "Are you interested in the business side of running a restaurant or cafe?", strand: "HE" },
+    { text: "Do you enjoy decorating cakes or preparing elaborate desserts?", strand: "HE" },
+    { text: "Do you enjoy cooking for your family?", strand: "HE" }
+    ];
+
+    questions.sort(() => Math.random() - 0.5);
+
+    let currentQuestionIndex = 0;
+
+    function showQuestion() {
+        if (currentQuestionIndex < questions.length) {
+            document.getElementById("q-count").innerText = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
+            document.getElementById("question-text").innerText = questions[currentQuestionIndex].text;
+            
+            const percent = (currentQuestionIndex / questions.length) * 100;
+            document.getElementById("progress-bar").style.width = percent + "%";
+        } else {
+            showResults();
+        }
+    }
+
+    function handleAnswer(points) {
+        const strand = questions[currentQuestionIndex].strand;
+        scores[strand] += points;
+        currentQuestionIndex++;
+        showQuestion();
+    }
+
+    function showResults() {
+        document.getElementById("progress-bar").style.width = "100%";
+        document.getElementById("question-box").classList.add("hidden");
+        document.getElementById("q-count").classList.add("hidden");
+        document.getElementById("result-box").classList.remove("hidden");
+
+        const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+        const winner = sorted[0][0];
+        
+        const names = { "CSS": "Computer Systems Servicing", 
+                        "EIM": "Electrical Installation & Maintenance", 
+                        "HE": "Home Economics (Cookery)" 
+                    };
+        
+        document.getElementById("result-text").innerText = names[winner];
+    }
+
+    showQuestion();
+
+</script>
+
+</body>
+</html>
